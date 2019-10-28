@@ -1,16 +1,20 @@
 <template>
   <ul>
-    <li v-for="stockTicker in stockTickers" v-bind:key="stockTicker.id">
-      <StockTickerDetail v-bind:stockTicker="stockTicker" v-on:update="onUpdate" v-on:remove="onRemove"/>
+    <li v-for='stockTicker in stockTickers' v-bind:key='stockTicker.id'>
+      <StockTickerDetail
+        v-bind:stockTicker='stockTicker'
+        v-on:update='onUpdate'
+        v-on:remove='onRemove'
+      />
     </li>
-    <li><CreateStockTicker v-on:add="onAdd"/></li>
+    <li><CreateStockTicker v-on:add='onAdd' /></li>
   </ul>
 </template>
-<script lang="ts">
+<script lang='ts'>
 import { Component, Vue, Prop } from 'vue-property-decorator';
 import StockTickerDetail from './StockTickerDetail.vue';
 import CreateStockTicker from './CreateStockTicker.vue';
-import { StockTickerViewModel } from '@/components/stockTickers/models';
+import { StockTickerViewModel } from './models';
 @Component({
   components: {
     StockTickerDetail,

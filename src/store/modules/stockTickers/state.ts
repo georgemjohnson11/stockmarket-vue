@@ -1,9 +1,9 @@
 export interface StockTicker {
-    id: number;
-    name: string;
-    rowVersion: string;
+  id: number;
+  name: string;
+  rowVersion: string;
 }
 
 export interface StockTickersState {
-    stockTickers: StockTicker[];
+  stockTickers: StockTicker[];
 }

@@ -1,10 +1,14 @@
 import Vue from 'vue';
-import Vuex, { StoreOptions, ActionContext, MutationTree, ActionTree } from 'vuex';
+import Vuex, {
+  StoreOptions,
+  ActionContext,
+  MutationTree,
+  ActionTree
+} from 'vuex';
 import { RootState } from './state';
 import { stockTickers } from './modules/stockTickers';
 
 Vue.use(Vuex);
-
 
 const options: StoreOptions<RootState> = {
   state: {},
@@ -12,3 +16,5 @@ const options: StoreOptions<RootState> = {
     stockTickers
   }
 };
+
+export default new Vuex.Store(options);

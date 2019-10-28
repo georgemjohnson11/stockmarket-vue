@@ -1,17 +1,20 @@
 <template>
-  <span v-if="isInEditMode">
-    <input v-model="editableStockTicker.name" placeholder="Enter a name for the stockTicker">
-    <button v-on:click="save()">Save</button>
-    <button v-on:click="discard()">Discard</button>
-    <button v-on:click="remove()">Remove</button>
+  <span v-if='isInEditMode'>
+    <input
+      v-model='editableStockTicker.name'
+      placeholder='Enter a name for the stockTicker'
+    />
+    <button v-on:click='save()'>Save</button>
+    <button v-on:click='discard()'>Discard</button>
+    <button v-on:click='remove()'>Remove</button>
   </span>
   <span v-else>
     {{ stockTicker.name }}
-    <button v-on:click="edit()">Edit</button>
+    <button v-on:click='edit()'>Edit</button>
   </span>
 </template>
 
-<script lang="ts">
+<script lang='ts'>
 import { Component, Vue, Prop } from 'vue-property-decorator';
 import { StockTickerViewModel } from './models';
 @Component({
@@ -26,15 +29,15 @@ export default class StockTickerDetail extends Vue {
     this.editableStockTicker = { ...this.stockTicker };
   }
   private save(): void {
-      this.$emit('update', this.editableStockTicker);
-      this.discard();
+    this.$emit('update', this.editableStockTicker);
+    this.discard();
   }
   private discard(): void {
     this.isInEditMode = false;
     this.editableStockTicker = null;
   }
   private remove(): void {
-      this.$emit('remove', this.editableStockTicker!.id);
+    this.$emit('remove', this.editableStockTicker!.id);
   }
 }
 </script>

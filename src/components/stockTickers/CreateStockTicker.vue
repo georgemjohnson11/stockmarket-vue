@@ -1,13 +1,16 @@
 <template>
-  <span v-if="creating">
-    <input v-model="stockTicker.Id" placeholder="Enter a name for the stockTicker">
-    <button v-on:click="save()">Save</button>
-    <button v-on:click="discard()">Discard</button>
+  <span v-if='creating'>
+    <input
+      v-model='stockTicker.Id'
+      placeholder='Enter a name for the stockTicker'
+    />
+    <button v-on:click='save()'>Save</button>
+    <button v-on:click='discard()'>Discard</button>
   </span>
-  <button v-else v-on:click="create()">Create new stockTicker</button>
+  <button v-else v-on:click='create()'>Create new stockTicker</button>
 </template>
 
-<script lang="ts">
+<script lang='ts'>
 import { Component, Vue, Prop } from 'vue-property-decorator';
 import { StockTickerViewModel } from './models';
 @Component({})

@@ -5,10 +5,10 @@ import { actions } from './actions';
 import { mutations } from './mutations';
 
 export const stockTickers: Module<StockTickersState, RootState> = {
-    namespaced: true,
-    actions,
-    mutations,
-    state: {
-        stockTickers: []
-    }
+  namespaced: true,
+  actions,
+  mutations,
+  state: {
+    stockTickers: []
+  }
 };
