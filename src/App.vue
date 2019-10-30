@@ -5,7 +5,7 @@
         <router-link to="/">Home</router-link>
         | <router-link to="/about">About</router-link>
         <template v-if="isUserLoggedIn">
-        | <router-link to="/stockTickers">Stocks</router-link>
+        | <router-link to="/stocktickers">Stocks</router-link>
         </template>
         <template v-else>
         | <a v-bind:href="loginUrl">Login</a>
@@ -34,7 +34,7 @@ export default class App extends Vue {
     return !!this.authInfo ? this.authInfo.loaded : false;
   }
   public get loginUrl(): string {
-    return `/api/auth/login?returnUrl=${window.location.href}`;
+    return `/auth/login?returnUrl=${window.location.href}`;
   }
 }
 </script>

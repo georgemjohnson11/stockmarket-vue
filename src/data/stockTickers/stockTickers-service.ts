@@ -6,7 +6,7 @@ import { BaseService } from '../base-service';
 // TODO: handle eventual errors
 
 export class StockTickersService extends BaseService implements StockTickersEndpoint {
-    private readonly baseUrl: string = '/api/stockTickers';
+    private readonly baseUrl: string = '/stockTickers';
 
     public async getAll(): Promise<StockTickerModel[]> {
         const response = await axios.get(this.baseUrl);

@@ -17,7 +17,7 @@ const router = new Router({
       component: Home
     },
     {
-      path: '/stockTickers',
+      path: '/stocktickers',
       name: 'stockTickers',
       component: () => import('./views/StockTickers.vue'),
       meta: { requiresAuthentication: true }
@@ -40,7 +40,7 @@ router.beforeEach(async (to, from, next) => {
   }
   if (to.matched.some(record => record.meta.requiresAuthentication)
     && !store.getters[authGetters.types.INFO].loggedIn) {
-    window.location.href = `/api/auth/login?returnUrl=${window.location.href}`;
+    window.location.href = `/auth/login?returnUrl=${window.location.href}`;
   } else {
     next();
   }
