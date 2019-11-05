@@ -1,5 +1,5 @@
 export interface StockTicker {
-  id: number;
+  id: string;
   name: string;
   rowVersion: string;
 }
