@@ -1,6 +1,6 @@
 
 export interface StockTickerModel {
-    id: number;
+    id: string;
     name: string;
     rowVersion: string;
 }

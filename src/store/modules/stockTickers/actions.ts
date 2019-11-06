@@ -1,6 +1,7 @@
 import { ActionTree } from 'vuex';
 import { StockTickersState, StockTicker } from './state';
 import { RootState } from '@/store/state';
+import { StockTickersEndpoint } from '@/data/stockTickers/stockTickers-endpoint';
 
 export const types = {
   LOAD_STOCKTICKERS: 'stockTickers/loadStockTickers',
@@ -9,25 +10,23 @@ export const types = {
   REMOVE_STOCKTICKER: 'stockTickers/remove'
 };
 
-export const actions: ActionTree<StockTickersState, RootState> = {
-  loadStockTickers({ commit }): void {
-    // TODO: fetch stockTickers from the api
-    const stockTickers = [
-      { id: 1, name: 'Sample StockTicker', rowVersion: 'aaa' },
-      { id: 2, name: 'Another Sample StockTicker', rowVersion: 'bbb' }
-    ];
-    commit('setStockTickers', stockTickers);
-  },
-  add({ commit }, stockTicker: StockTicker): void {
-    // TODO: make the api request before committing to the store
-    commit('add', stockTicker);
-  },
-  update({ commit }, stockTicker: StockTicker): void {
-    // TODO: make the api request before committing to the store
-    commit('update', stockTicker);
-  },
-  remove({ commit }, stockTickerId: number): void {
-    // TODO: make the api request before committing to the store
-    commit('remove', stockTickerId);
-  }
+export const makeActions = (stockTickersEndpoint: StockTickersEndpoint): ActionTree<StockTickersState, RootState> => {
+  return {
+      async loadStockTickers({ commit }): Promise<void> {
+          const stockTickers = await stockTickersEndpoint.getAll();
+          commit('setStockTickers', stockTickers);
+      },
+      async add({ commit }, stockTickers: StockTicker): Promise<void> {
+          const addedStockTicker = await stockTickersEndpoint.add(stockTickers);
+          commit('add', addedStockTicker);
+      },
+      async update({ commit }, stockTicker: StockTicker): Promise<void> {
+          const updatedStockTicker = await stockTickersEndpoint.update(stockTicker);
+          commit('update', updatedStockTicker);
+      },
+      async remove({ commit }, stockTickerId: string): Promise<void> {
+          await stockTickersEndpoint.remove(stockTickerId);
+          commit('remove', stockTickerId);
+      }
+  };
 };
