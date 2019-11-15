@@ -18,7 +18,7 @@ const router = new Router({
     },
     {
       path: '/stocktickers',
-      name: 'stockTickers',
+      name: 'stocktickers',
       component: () => import('./views/StockTickers.vue'),
       meta: { requiresAuthentication: true }
     },
